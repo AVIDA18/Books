@@ -15,6 +15,8 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddScoped<DatabaseOperationClass>();
 builder.Services.AddScoped<LoginClass>();
+builder.Services.AddScoped<UsersClass>();
+builder.Services.AddScoped<ProductsClass>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

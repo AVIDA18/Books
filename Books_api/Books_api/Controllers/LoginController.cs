@@ -20,6 +20,12 @@ namespace Books_api.Controllers
             _loginClass = loginClass;
         }
 
+        /// <summary>
+        /// This fetches the password of the user from the databse using userName and checks the
+        /// password here.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [Route("api/Login")]
         [HttpPost]
         public async Task<IActionResult> Login(LoginParameters parameters)
@@ -74,6 +80,48 @@ namespace Books_api.Controllers
             else
             {
                 return NotFound(Status.InvalidParameters);
+            }
+        }
+
+        /// <summary>
+        /// It lets user to change password it takes password as input and changes the password of logged user.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        [Route("api/ChangePassword")]
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePassword parameters)
+        {
+            var userIdClaim = User.FindFirst("user_id");
+            if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return BadRequest(Status.InvalidUser);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(Status.InvalidParameters);
+            }
+
+            parameters.Password = SecurityClass.GetBcryptHash(parameters.Password);
+            parameters.UserId = Convert.ToInt32(User.FindFirst("user_id")?.Value);
+
+            try
+            {
+                var result = await _loginClass.ChangePassword(parameters);
+
+                if (string.IsNullOrEmpty(result) || result == "-1")
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return Problem(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
             }
         }
     }

@@ -12,6 +12,7 @@ namespace Books_api.Data
         {
             _dbOperation = dbOperation;
         }
+
         public async Task<ListUserData?> GetUserData(string userName)
         {
             var connectionString = _dbOperation.GetConnectionString();
@@ -39,6 +40,33 @@ namespace Books_api.Data
             }
 
             return null;
+        }
+
+
+        public async Task<string> ChangePassword(ChangePassword parameters)
+        {
+            try
+            {
+                var connectionString = _dbOperation.GetConnectionString();
+
+                using SqlConnection connection = new(connectionString);
+                await connection.OpenAsync();
+
+                using SqlCommand command = new("sp_ChangePassword", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@UserId", parameters.UserId);
+                command.Parameters.AddWithValue("@Password", parameters.Password);
+
+                string result = (await command.ExecuteScalarAsync())?.ToString() ?? "";
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
     }

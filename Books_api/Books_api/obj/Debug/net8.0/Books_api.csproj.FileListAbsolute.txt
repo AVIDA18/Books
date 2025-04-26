@@ -49,3 +49,4 @@ E:\Github\Books\Books_api\Books_api\bin\Debug\net8.0\runtimes\win-x64\native\sni
 E:\Github\Books\Books_api\Books_api\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
 E:\Github\Books\Books_api\Books_api\bin\Debug\net8.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 E:\Github\Books\Books_api\Books_api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+E:\Github\Books\Books_api\Books_api\obj\Debug\net8.0\Books_api.sourcelink.json

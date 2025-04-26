@@ -1,6 +1,43 @@
 [
   {
     "ContainingType": "Books_api.Controllers.LoginController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.UsersController",
+    "Method": "EditUserRoleAndStatus",
+    "RelativePath": "api/EditUserRoleAndStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameters",
+        "Type": "Books_api.Models.UsersRoleSetParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.LoginController",
     "Method": "Login",
     "RelativePath": "api/Login",
     "HttpMethod": "POST",
@@ -16,6 +53,152 @@
         "Name": "Password",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.UsersController",
+    "Method": "RegisterUser",
+    "RelativePath": "api/RegisterUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameters",
+        "Type": "Books_api.Models.UsersParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductsController",
+    "Method": "SaveProduct",
+    "RelativePath": "api/SaveEditProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ParentProductId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.Byte[]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Price",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "OnDiscount",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "DiscountPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsParentProduct",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Status",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductsController",
+    "Method": "SearchAndSortProducts",
+    "RelativePath": "api/SearchAndSortProducts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.SearchAndSortProductParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductsController",
+    "Method": "SelectProductCategories",
+    "RelativePath": "api/SelectAllProductCategories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.ListProductCategoriesParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductsController",
+    "Method": "SelectProducts",
+    "RelativePath": "api/SelectAllProducts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.ListProductParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.UsersController",
+    "Method": "SelectUsers",
+    "RelativePath": "api/SelectAllUsers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.ListUsersParameter",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
