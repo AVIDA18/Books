@@ -3,6 +3,7 @@ using Books_api.Data;
 using Books_api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Books_api.Controllers
 {
@@ -24,6 +25,7 @@ namespace Books_api.Controllers
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost]
         [Route("api/RegisterUser")]
         public async Task<IActionResult> RegisterUser(UsersParameters parameters)
@@ -59,11 +61,12 @@ namespace Books_api.Controllers
         /// <param name="parameter"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = "SelectAllUsers")]
         [Route("api/SelectAllUsers")]
         public async Task<IActionResult> SelectUsers(ListUsersParameter parameter)
         {
-            var userIdClaim = User.FindFirst("user_id");
+            //var userIdClaim = User.FindFirst("nameidentifier");
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
             {
                 return BadRequest(Status.InvalidUser);

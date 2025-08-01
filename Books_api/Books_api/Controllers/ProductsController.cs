@@ -3,6 +3,7 @@ using Books_api.Data;
 using Books_api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Books_api.Controllers
 {
@@ -80,11 +81,11 @@ namespace Books_api.Controllers
         /// <param name="parameter"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        [Authorize(Policy = "SelectAllProductCategories")]
         [Route("api/SelectAllProductCategories")]
         public async Task<IActionResult> SelectProductCategories(ListProductCategoriesParameters parameter)
         {
-            var userIdClaim = User.FindFirst("user_id");
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
             {
                 return BadRequest(Status.InvalidUser);

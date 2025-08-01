@@ -1,6 +1,7 @@
 ﻿using Books_api.AppLogics;
 using Books_api.Data;
 using Books_api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace Books_api.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly LoginClass _loginClass;
@@ -26,6 +27,7 @@ namespace Books_api.Controllers
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [Route("api/Login")]
         [HttpPost]
         public async Task<IActionResult> Login(LoginParameters parameters)
@@ -56,8 +58,8 @@ namespace Books_api.Controllers
                         {
                             Subject = new ClaimsIdentity(new[]
                             {
-                                new Claim("user_id", listUserDetails.UserId.ToString(), ClaimValueTypes.Integer32),
-                                new Claim(ClaimTypes.Role, Convert.ToString(listUserDetails.RoleType)),
+                                new Claim(ClaimTypes.NameIdentifier, listUserDetails.UserId.ToString()),
+                                //new Claim(ClaimTypes.Role, Convert.ToString(listUserDetails.RoleType)),
                             }),
                             Expires = DateTime.UtcNow.AddDays(tokenOptions.ExpiryDays),
                             Issuer = tokenOptions.ValidIssuer,
@@ -88,6 +90,7 @@ namespace Books_api.Controllers
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("api/ChangePassword")]
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePassword parameters)

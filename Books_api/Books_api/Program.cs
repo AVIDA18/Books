@@ -6,6 +6,8 @@ using Books_api.AppLogics;
 using Books_api.Models;
 using System.Text;
 using Books_api.Data;
+using Books_api.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,13 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddScoped<DatabaseOperationClass>();
+builder.Services.AddScoped<AdminClass>();
 builder.Services.AddScoped<LoginClass>();
 builder.Services.AddScoped<UsersClass>();
 builder.Services.AddScoped<ProductsClass>();
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
@@ -70,12 +74,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("SysAdmin", policy => policy.RequireRole("SysAdmin"));
-    options.AddPolicy("Member", policy => policy.RequireRole("Member"));
-    options.AddPolicy("Customers", policy => policy.RequireRole("Customers"));
+    //options.AddPolicy("SysAdmin", policy => policy.RequireRole("SysAdmin"));
+    //options.AddPolicy("Member", policy => policy.RequireRole("Member"));
+    //options.AddPolicy("Customers", policy => policy.RequireRole("Customers"));
+
+    options.InvokeHandlersAfterFailure = false;
+
+    // Dynamically handle ANY permission using a custom fallback policy
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .AddRequirements(new DynamicPermissionRequirement())
+        .Build();
 });
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, DynamicAuthorizationPolicyProvider>();//permission automate
+builder.Services.AddScoped<IAuthorizationHandler, PermissionHandler>();  
 builder.Services.AddLogging(options =>
 {
     options.AddConsole();

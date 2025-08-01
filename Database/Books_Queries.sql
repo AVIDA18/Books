@@ -303,6 +303,8 @@ Remarks varchar(250) NULL
 )
 GO
 
+
+--Ya code dwastai bigreko xa milauna parne xa
 GO
 CREATE PROCEDURE sp_PurchaseCancelProduct
 @PurchaseId int,
@@ -316,10 +318,14 @@ CREATE PROCEDURE sp_PurchaseCancelProduct
 @Remarks varchar(250)
 AS
 BEGIN
+	DECLARE @IsReviewed bit
+
 	IF @PurchaseId IS NULL
 	BEGIN
 		INSERT INTO ProductPurchase (UserId, ProductCartIds, TotalPrice, DiscountCode, DiscountPrice, PurchasePrice, IsPurchased, PurchaseDate, Remarks)
 		VALUES (@UserId, @ProductCartIds, @TotalPrice, @DiscountCode, @DiscountPrice, @PurchasePrice, 1, GETDATE(), '');
+
+		exec sp_SaveEditReviews NULL, @UserId, @ProductId, @PurchaseId, 0, '', 1;
 	END
 	ELSE
 	BEGIN
@@ -327,6 +333,8 @@ BEGIN
 			IsPurchased = 0,
 			Remarks = @Remarks
 		WHERE PurchaseId = @PurchaseId
+
+		SET @IsReviewed = (SELECT 1 FROM Reviews WHERE )
 	END
 END
 GO
@@ -417,6 +425,49 @@ BEGIN
 			Roletype = @RoleType,
 			ExpiryDate = @ExpiryDate
 		WHERE MessageId = @MessageId
+	END
+END
+GO
+
+GO
+CREATE TABLE Reviews
+(
+ReviewId int NOT NULL IDENTITY(1,1) CONSTRAINT Reviews_pk PRIMARY KEY,
+UserId int NOT NULL CONSTRAINT Reviews_Users_fk REFERENCES Users(UserId),
+ProductId int NOT NULL CONSTRAINT Reviews_Product_fk REFERENCES Products(ProductId),
+PurchaseId int NOT NULL CONSTRAINT Reviews_ProductPurchase_fk REFERENCES ProductPurchase(PurchaseId),
+Stars int NOT NULL,
+ReviewMessage varchar(250) NULL,
+EntryDate datetime NULL,
+Status bit NOT NULL
+);
+GO
+
+GO
+CREATE PROCEDURE sp_SaveEditReviews
+@ReviewId int = NULL,
+@UserId int,
+@ProductId int,
+@PurchaseId int,
+@Stars int,
+@ReviewMessage varchar(250) NULL,
+@Status bit
+AS
+BEGIN
+	IF @ReviewId IS NULL
+	BEGIN
+		INSERT INTO Reviews (UserId, ProductId, PurchaseId, Stars, ReviewMessage, EntryDate, Status)
+		VALUES (@UserId, @ProductId, @PurchaseId, @Stars, @ReviewMessage, GETDATE(), @Status)
+	END
+	ELSE
+	BEGIN
+		UPDATE Reviews SET 
+			UserId = @UserId,
+			ProductId = @ProductId,
+			Stars = @Stars,
+			ReviewMessage = @ReviewMessage,
+			Status = @Status
+		WHERE ReviewId = @ReviewId
 	END
 END
 GO

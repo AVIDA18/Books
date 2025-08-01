@@ -1,5 +1,37 @@
 [
   {
+    "ContainingType": "Books_api.Controllers.AdminController",
+    "Method": "AssignPermission",
+    "RelativePath": "api/Admin/assign-permission",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Books_api.Models.AssignPermission",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.AdminController",
+    "Method": "AssignRole",
+    "RelativePath": "api/Admin/assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Books_api.Models.AssignRole",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Books_api.Controllers.LoginController",
     "Method": "ChangePassword",
     "RelativePath": "api/ChangePassword",
