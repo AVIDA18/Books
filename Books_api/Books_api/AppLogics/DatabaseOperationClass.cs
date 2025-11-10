@@ -21,7 +21,7 @@ namespace Books_api.AppLogics
             /*Fetch the connection string configuration from appsettings.json as per the environment*/
             builder.ConnectionString = _configuration.GetConnectionString("DefaultConnection");
 
-            builder.InitialCatalog = "Booksdb";
+            builder.InitialCatalog = "Productdb";
             return builder.ToString();
         }
     }

@@ -17,6 +17,7 @@ namespace Books_api.Controllers
         }
 
         [HttpPost("assign-role")]
+        [Authorize(Policy = "assignRole")]
         public IActionResult AssignRole([FromBody] AssignRole dto)
         {
             _admin.AssignRoleToUserAsync(dto.UserId, dto.RoleId);
@@ -24,6 +25,7 @@ namespace Books_api.Controllers
         }
 
         [HttpPost("assign-permission")]
+        [Authorize(Policy = "assignPermission")]
         public IActionResult AssignPermission([FromBody] AssignPermission dto)
         {
             _admin.AssignPermissionToRoleAsync(dto.RoleId, dto.PermissionId);
