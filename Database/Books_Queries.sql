@@ -93,7 +93,7 @@ BEGIN
     FROM Users
     WHERE 
         (
-            (@RoleType IS NULL AND RoleType <> 1) OR 
+            (@RoleType IS NULL) OR 
             (@RoleType IS NOT NULL AND RoleType = @RoleType)
         )
         AND (@Status IS NULL OR Status = @Status);
@@ -288,7 +288,7 @@ GO
 CREATE TABLE Cart
 (
 CartId int NOT NULL IDENTITY(1,1) CONSTRAINT Cart_pk PRIMARY KEY,
-ProductId int NULL CONSTRAINT Cart_Products_fk REFERENCES Products(ProductId),
+ProductId int NULL CONSTRAINT Cart_Products_fk REFERENCES Products(ProductId) ON DELETE CASCADE,
 ProductCount int NOT NULL DEFAULT(1),
 UserId int NULL CONSTRAINT Cart_Users_fk REFERENCES Users(UserId),
 EntryDate datetime NULL DEFAULT(GETDATE()),
@@ -326,13 +326,51 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO Cart (ProductId, ProductCount, UserId, EntryDate, Status, Remarks)
-    VALUES (@ProductId, 1, @UserId,GETDATE(), 1, '');
+	    -- Check how many cart items the user already has
+    DECLARE @CartCount INT;
+	DECLARE @ExistingProductCount int;
+    SELECT @CartCount = COUNT(*) FROM Cart WHERE UserId = @UserId;
+
+    IF (@CartCount >= 10)
+    BEGIN
+        RAISERROR('Cart is full', 16, 1);
+        RETURN;
+    END
+
+	SELECT @ExistingProductCount = COUNT(*)
+    FROM Cart
+    WHERE UserId = @UserId AND ProductId = @ProductId;
+
+	IF(@ExistingProductCount > 0)
+	BEGIN
+		UPDATE Cart SET ProductCount = ProductCount + 1
+			WHERE ProductId = @ProductId AND UserId = @UserId
+	END
+	ELSE
+	BEGIN
+	    INSERT INTO Cart (ProductId, ProductCount, UserId, EntryDate, Status, Remarks)
+		VALUES (@ProductId, 1, @UserId,GETDATE(), 1, '');
+	END
 END
 GO
 
 GO
-CREATE PROCEDURE UpdateCartProductCount
+CREATE PROCEDURE sp_ListCartItems
+	@UserId int
+AS
+BEGIN
+	UPDATE Cart
+	SET Status = 0,
+	Remarks = 'Re-Add this item to cart or remove it.'
+	WHERE Status = 1
+	  AND EntryDate < DATEADD(DAY, -30, GETDATE());
+
+	SELECT * FROM vw_CartDetails WHERE UserId = @UserId;
+END
+GO
+
+GO
+CREATE PROCEDURE sp_UpdateCartProductCount
 	@CartId int,
 	@Count int
 AS
@@ -345,28 +383,13 @@ GO
 
 GO
 CREATE PROCEDURE sp_RemoveFromCart
-    @CartId int,
-	@UserId int
+    @CartId int
 AS
 BEGIN
     SET NOCOUNT ON;
 
     DELETE FROM Cart
-    WHERE CartId = @CartId AND UserId = @UserId;
-END
-GO
-
-GO
-CREATE PROCEDURE sp_ListCartItems
-	@UserId int
-AS
-BEGIN
-	UPDATE Cart
-	SET Status = 0
-	WHERE Status = 1
-	  AND EntryDate < DATEADD(DAY, -30, GETDATE());
-
-	SELECT * FROM vw_CartDetails WHERE UserId = @UserId;
+    WHERE CartId = @CartId;
 END
 GO
 
@@ -377,6 +400,7 @@ AS
 BEGIN
 	UPDATE Cart
 	SET Status = 1,
+	Remarks = '',
 	EntryDate = GETDATE()
 	WHERE CartId = @CartId
 END

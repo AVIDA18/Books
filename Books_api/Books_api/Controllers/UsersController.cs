@@ -95,40 +95,40 @@ namespace Books_api.Controllers
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("api/EditUserRoleAndStatus")]
-        public async Task<IActionResult> EditUserRoleAndStatus(UsersRoleSetParameters parameters)
-        {
-            var userIdClaim = User.FindFirst("user_id");
-            if (userIdClaim == null ||
-                !int.TryParse(userIdClaim.Value, out int userId) ||
-                userId != 1)
-            {
-                return BadRequest(Status.InvalidUser);
-            }
+        //[HttpPost]
+        //[Route("api/EditUserRoleAndStatus")]
+        //public async Task<IActionResult> EditUserRoleAndStatus(UsersRoleSetParameters parameters)
+        //{
+        //    var userIdClaim = User.FindFirst("user_id");
+        //    if (userIdClaim == null ||
+        //        !int.TryParse(userIdClaim.Value, out int userId) ||
+        //        userId != 1)
+        //    {
+        //        return BadRequest(Status.InvalidUser);
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(Status.InvalidParameters);
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(Status.InvalidParameters);
+        //    }
 
-            try
-            {
-                var result = await _usersClass.SetUsersRole(parameters);
+        //    try
+        //    {
+        //        var result = await _usersClass.SetUsersRole(parameters);
 
-                if (string.IsNullOrEmpty(result) || result == "-1")
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return Problem(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
+        //        if (string.IsNullOrEmpty(result) || result == "-1")
+        //        {
+        //            return Ok();
+        //        }
+        //        else
+        //        {
+        //            return Problem(result);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Problem(ex.Message);
+        //    }
+        //}
     }
 }

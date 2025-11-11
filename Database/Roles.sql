@@ -37,7 +37,7 @@ CREATE TABLE Permissions (
 
 GO
 INSERT INTO Permissions(PermissionName)
-VALUES ('assignRole'),('assignPermission')
+VALUES ('assignRole'),('assignPermission'), ('SaveEditProduct'), ('SelectAllUsers')
 GO
 
 -- ROLE PERMISSIONS
@@ -87,7 +87,7 @@ GO
 
 GO
 INSERT INTO RolePermissions(RoleId, PermissionId)
-VALUES (1, 1), (1, 2)
+VALUES (1, 1), (1, 2), (1, 3), (1, 4)
 GO
 
 GO

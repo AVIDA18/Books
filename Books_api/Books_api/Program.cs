@@ -20,6 +20,7 @@ builder.Services.AddScoped<AdminClass>();
 builder.Services.AddScoped<LoginClass>();
 builder.Services.AddScoped<UsersClass>();
 builder.Services.AddScoped<ProductsClass>();
+builder.Services.AddScoped<ProductCartClass>();
 
 builder.Services.AddControllers();
 

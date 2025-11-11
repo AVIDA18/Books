@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\Avida_Git\\Books\\Books_api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|d:\\avida_git\\books\\books_api\\books_api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|solutionrelative:books_api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|d:\\avida_git\\books\\books_api\\books_api\\controllers\\productcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|solutionrelative:books_api\\controllers\\productcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|d:\\avida_git\\books\\books_api\\books_api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|solutionrelative:books_api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|d:\\avida_git\\books\\books_api\\books_api\\data\\productsclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|solutionrelative:books_api\\data\\productsclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|d:\\avida_git\\books\\books_api\\books_api\\data\\productcartclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37C60081-68F9-48AA-A462-AFC6F6984D89}|Books_api\\Books_api.csproj|solutionrelative:books_api\\data\\productcartclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,22 +36,48 @@
               "RelativeDocumentMoniker": "Books_api\\Controllers\\ProductsController.cs",
               "ToolTip": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "Books_api\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAowB0AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCIAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T08:57:23.609Z",
+              "WhenOpened": "2025-11-11T09:44:12.287Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "Books_api\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "Books_api\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBMAAAAnAAAAAAAAAA==",
+              "Title": "ProductCartController.cs",
+              "DocumentMoniker": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Controllers\\ProductCartController.cs",
+              "RelativeDocumentMoniker": "Books_api\\Controllers\\ProductCartController.cs",
+              "ToolTip": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Controllers\\ProductCartController.cs",
+              "RelativeToolTip": "Books_api\\Controllers\\ProductCartController.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAwwB4AAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T08:52:21.471Z",
+              "WhenOpened": "2025-11-11T09:42:19.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductCartClass.cs",
+              "DocumentMoniker": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Data\\ProductCartClass.cs",
+              "RelativeDocumentMoniker": "Books_api\\Data\\ProductCartClass.cs",
+              "ToolTip": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Data\\ProductCartClass.cs",
+              "RelativeToolTip": "Books_api\\Data\\ProductCartClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:40:34.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductsClass.cs",
+              "DocumentMoniker": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Data\\ProductsClass.cs",
+              "RelativeDocumentMoniker": "Books_api\\Data\\ProductsClass.cs",
+              "ToolTip": "D:\\Avida_Git\\Books\\Books_api\\Books_api\\Data\\ProductsClass.cs",
+              "RelativeToolTip": "Books_api\\Data\\ProductsClass.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAqwAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:39:31.169Z",
               "EditorCaption": ""
             }
           ]

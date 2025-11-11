@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Books_api.Controllers.ProductCartController",
+    "Method": "AddProductToCart",
+    "RelativePath": "api/AddProductToCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.AddToCartParams",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Books_api.Controllers.AdminController",
     "Method": "AssignPermission",
     "RelativePath": "api/Admin/assign-permission",
@@ -53,22 +69,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Books_api.Controllers.UsersController",
-    "Method": "EditUserRoleAndStatus",
-    "RelativePath": "api/EditUserRoleAndStatus",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "parameters",
-        "Type": "Books_api.Models.UsersRoleSetParameters",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Books_api.Controllers.LoginController",
     "Method": "Login",
     "RelativePath": "api/Login",
@@ -100,6 +100,32 @@
       {
         "Name": "parameters",
         "Type": "Books_api.Models.UsersParameters",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductCartController",
+    "Method": "RemoveAllProductFromCart",
+    "RelativePath": "api/RemoveAllProductFromCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductCartController",
+    "Method": "RemoveSingleProductFromCart",
+    "RelativePath": "api/RemoveSingleProductFromCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.UpdateAndDeleteCartProductStatus",
         "IsRequired": true
       }
     ],
@@ -188,6 +214,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Books_api.Controllers.ProductCartController",
+    "Method": "SelectCartItems",
+    "RelativePath": "api/SelectAllCartItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Books_api.Controllers.ProductsController",
     "Method": "SelectProductCategories",
     "RelativePath": "api/SelectAllProductCategories",
@@ -230,6 +266,38 @@
       {
         "Name": "parameter",
         "Type": "Books_api.Models.ListUsersParameter",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductCartController",
+    "Method": "UpdateProductCountCart",
+    "RelativePath": "api/UpdateProductCountCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.UpdateCartProductCount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books_api.Controllers.ProductCartController",
+    "Method": "UpdateProductOnCartStatus",
+    "RelativePath": "api/UpdateProductOnCartStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parameter",
+        "Type": "Books_api.Models.UpdateAndDeleteCartProductStatus",
         "IsRequired": true
       }
     ],

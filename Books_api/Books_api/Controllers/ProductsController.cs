@@ -28,10 +28,11 @@ namespace Books_api.Controllers
         /// <param name="parameters"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Policy = "SaveEditProduct")]
         [Route("api/SaveEditProduct")]
         public async Task<IActionResult> SaveProduct([FromForm] ProductParameters parameters)
         {
-            var userIdClaim = User.FindFirst("user_id");
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
             {
                 return BadRequest(Status.InvalidUser);
@@ -81,7 +82,7 @@ namespace Books_api.Controllers
         /// <param name="parameter"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Policy = "SelectAllProductCategories")]
+        [Authorize]
         [Route("api/SelectAllProductCategories")]
         public async Task<IActionResult> SelectProductCategories(ListProductCategoriesParameters parameter)
         {
@@ -118,7 +119,7 @@ namespace Books_api.Controllers
         [Route("api/SelectAllProducts")]
         public async Task<IActionResult> SelectProducts(ListProductParameters parameter)
         {
-            var userIdClaim = User.FindFirst("user_id");
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
             {
                 return BadRequest(Status.InvalidUser);
@@ -151,7 +152,7 @@ namespace Books_api.Controllers
         [Route("api/SearchAndSortProducts")]
         public async Task<IActionResult> SearchAndSortProducts( [FromBody] SearchAndSortProductParameters parameter)
         {
-            var userIdClaim = User.FindFirst("user_id");
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
             {
                 return BadRequest(Status.InvalidUser);

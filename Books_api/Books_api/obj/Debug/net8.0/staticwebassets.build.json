@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "rrJ2zbgkhxi0ZbbEfNiW00mTfKzKAgakemMz4hLNrOw=",
-  "Source": "Books_api",
-  "BasePath": "_content/Books_api",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"rrJ2zbgkhxi0ZbbEfNiW00mTfKzKAgakemMz4hLNrOw=","Source":"Books_api","BasePath":"_content/Books_api","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
